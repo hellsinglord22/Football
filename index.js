@@ -22,14 +22,14 @@ const data = [{
 
 app
     .get('/v1/competitions', (req, res) => {
-
         res.send(data);
     })
     .get('/v1/competitions/:competitionId/teams', (req, res) => {
         const { competitionId } = req.params;
         const resData = data.filter( (obj) => obj.id === parseInt(competitionId) );
         res.send(resData);
-    });
+    })
+    .get('/v1/teams/:teamId/fixtures');
 
 
 
