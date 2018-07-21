@@ -6,7 +6,6 @@ const PORT = 3000;
 
 app
     .get('/v1/competitions', (req, res) => {
-
         res.send([{
             "id": 424,
             "caption": "Brazil",
@@ -53,9 +52,41 @@ app
     })
     .get('/v1/teams/:teamId/fixtures', (req, res) => {
         res.send({
-
-
-
+            "fixtures": [  
+             {
+                 "homeTeamId": 4,
+                "awayTeamId" : 6,
+                   "status": "FINISHED",
+                   "result": {
+                       "goalsHomeTeam": 3,
+                       "goalsAwayTeam": 3,
+                   }
+             },
+               {     "homeTeamId": 7,
+                   "awayTeamId" : 6,
+                   "status": "SCHEDULED",
+                   "result": {
+                       "goalsHomeTeam": 3,
+                       "goalsAwayTeam": 0,
+                   }
+             },
+               {     "homeTeamId": 3,
+                   "awayTeamId" : 7,
+                   "status": "FINISHED",
+                   "result": {
+                       "goalsHomeTeam": 6,
+                       "goalsAwayTeam": 1,
+                   }
+             },
+               {     "homeTeamId": 4,
+                     "awayTeamId" : 7,
+                     "status": "SCHEDULED",
+                     "result": {
+                       "goalsHomeTeam": 1,
+                       "goalsAwayTeam": 3,
+                     }
+             }
+            ]
         });
     });
 
