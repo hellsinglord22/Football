@@ -16,39 +16,50 @@ app
             "caption": "Kupa na Bulgarija",
             "numberOfTeams": 267,
             "numberOfGames": 34,
-        },{
-            "id": 444,
-            "caption": "European Championships France",
-            "numberOfTeams": 24,
-            "numberOfGames": 38,
-        }]);
+        },]);
 
     })
     .get('/v1/competitions/:competitionId/teams', (req, res) => {
 
-        res.send({
-            teams: [{
-                    "id": 4,
-                    "name": "Manchester",
-                    "crestUrl": "https://www.gstatic.com/webp/gallery3/1.png",
-                },
-                {
-                    "id": 3,
-                    "name": "ManCity",
-                    "crestUrl": "https://www.gstatic.com/webp/gallery3/2_webp_ll.png",
+        const { competitionId } = req.params;
+        if (competitionId == 424) {
+            res.send({
+            "teams":
+                [
+                    {
+                        "id": 3,
+                        "name": "Manchester",
+                        "crestUrl": "https://i.pinimg.com/originals/ee/c8/b5/eec8b50995db204e5445bf1fb5fe2431.jpg" ,
+                    },
+                    {
+                        "id": 4,
+                        "name": "ManCity",
+                        "crestUrl": "https://i.pinimg.com/originals/6a/db/94/6adb94f14f5bdcb9627e9f5a7a41522d.jpg",
+                    }
+                ]})
+        }
+        else if (competitionId == 433) {
+            res.send({
+                "teams": [{
+                    "id": 9,
+                    "name": "Afghanistan",
+                    "crestUrl": "https://i.pinimg.com/originals/7e/61/b2/7e61b234578a94ad988dba07a4dacde0.jpg" ,
                 },
                 {
                     "id": 7,
-                    "name": "team7",
-                    "crestUrl": "https://www.gstatic.com/webp/gallery3/3_webp_ll.png",
+                    "name": "WC Qualification",
+                    "crestUrl": "https://i.pinimg.com/originals/1a/ff/99/1aff99b61852e2d4c4f824f8fff6a2de.png",
                 },
                 {
-                    "id": 6,
-                    "name": "Team8",
-                    "crestUrl": "https://www.gstatic.com/webp/gallery3/5_webp_ll.png",
-                }
-            ]
-        });
+                    "id": 8,
+                    "name": "Argentina",
+                    "crestUrl": "https://i.pinimg.com/originals/38/b8/2c/38b82c83cd8ffb8404131a31caaf64c8.png",
+                }]
+            })
+        }
+        else {
+            res.send({});
+        }
     })
     .get('/v1/teams/:teamId/fixtures', (req, res) => {
         res.send({
