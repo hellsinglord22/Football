@@ -2,7 +2,116 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-
+const team3and4 = {
+    "fixtures": [{
+        "homeTeamId": 3,
+        "awayTeamId" : 4,
+        "status": "FINISHED",
+        "result": {
+            "goalsHomeTeam": 3,
+            "goalsAwayTeam": 3,
+        }
+     }]
+};
+const team7 = {
+    "fixtures": [  
+     {
+         "homeTeamId": 7,
+           "awayTeamId" : 3,
+           "status": "FINISHED",
+           "result": {
+               "goalsHomeTeam": 3,
+               "goalsAwayTeam": 3,
+           }
+     },
+       {
+           "homeTeamId": 8,
+           "awayTeamId" : 7,
+           "status": "FINISHED",
+           "result": {
+               "goalsHomeTeam": 6,
+               "goalsAwayTeam": 1,
+           }
+       },
+       {     "homeTeamId": 9,
+             "awayTeamId" : 7,
+             "status": "SCHEDULED",
+             "result": {
+               "goalsHomeTeam": 1,
+               "goalsAwayTeam": 3,
+             }
+     }
+    ],
+};
+const team8 = {
+    "fixtures": [  
+        {     "homeTeamId": 8,
+              "awayTeamId" : 7,
+              "status": "FINISHED",
+              "result": {
+                  "goalsHomeTeam": 8,
+                  "goalsAwayTeam": 2,
+              }
+        },
+        {     "homeTeamId": 8,
+              "awayTeamId" : 9,
+              "status": "SCHEDULED",
+              "result": {
+                  "goalsHomeTeam": 0,
+                  "goalsAwayTeam": 0,
+              }
+        },
+        {     "homeTeamId": 8,
+                "awayTeamId" : 4,
+                "status": "SCHEDULED",
+                "result": {
+                  "goalsHomeTeam": 1,
+                  "goalsAwayTeam": 2,
+                }
+        }
+      ]
+};
+const team9 = {
+    "fixtures": [  
+        {
+            "homeTeamId": 9,
+              "awayTeamId" : 4,
+              "status": "SCHEDULED",
+              "result": {
+                  "goalsHomeTeam": 3,
+                  "goalsAwayTeam": 3,
+              }
+        },
+          {
+              "homeTeamId": 9,
+              "awayTeamId" : 7,
+              "status": "SCHEDULED",
+              "result": {
+                  "goalsHomeTeam": 3,
+                  "goalsAwayTeam": 0,
+              }
+        },
+          {
+              "homeTeamId": 8,
+              "awayTeamId" : 9,
+              "status": "FINISHED",
+              "result": {
+                  "goalsHomeTeam": 6,
+                  "goalsAwayTeam": 1,
+              }
+        },
+          {
+              "homeTeamId": 9,
+                "awayTeamId" : 3,
+                "status": "SCHEDULED",
+                "result": {
+                  "goalsHomeTeam": 1,
+                  "goalsAwayTeam": 3,
+                }
+        }
+         
+      ]
+}
 
 app
     .get('/v1/competitions', (req, res) => {
@@ -62,43 +171,22 @@ app
         }
     })
     .get('/v1/teams/:teamId/fixtures', (req, res) => {
-        res.send({
-            "fixtures": [  
-             {
-                 "homeTeamId": 4,
-                "awayTeamId" : 6,
-                   "status": "FINISHED",
-                   "result": {
-                       "goalsHomeTeam": 3,
-                       "goalsAwayTeam": 3,
-                   }
-             },
-               {     "homeTeamId": 7,
-                   "awayTeamId" : 6,
-                   "status": "SCHEDULED",
-                   "result": {
-                       "goalsHomeTeam": 3,
-                       "goalsAwayTeam": 0,
-                   }
-             },
-               {     "homeTeamId": 3,
-                   "awayTeamId" : 7,
-                   "status": "FINISHED",
-                   "result": {
-                       "goalsHomeTeam": 6,
-                       "goalsAwayTeam": 1,
-                   }
-             },
-               {     "homeTeamId": 4,
-                     "awayTeamId" : 7,
-                     "status": "SCHEDULED",
-                     "result": {
-                       "goalsHomeTeam": 1,
-                       "goalsAwayTeam": 3,
-                     }
-             }
-            ]
-        });
+        const { teamId } = req.params;
+        if (teamId == 3 || teamId == 4) {
+            res.send(team3and4);
+        }
+        else if (teamId == 7) {
+            res.send(team7);
+        }
+        else if (teamId == 8) {
+            res.send(team8);
+        }
+        else if (teamId == 9) {
+            res.send(team9);
+        }
+        else {
+            res.send({});
+        }
     });
 
 
